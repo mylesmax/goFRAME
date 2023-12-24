@@ -4,9 +4,9 @@
 
 # goFRAME
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/mylesmax/goFRAME/blob/master/LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/mylesmax/goframes)](https://goreportcard.com/report/github.com/mylesmax/goframes)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/mylesmax/goFRAME/blob/master/LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/mylesmax/goframe)](https://goreportcard.com/report/github.com/mylesmax/goframe)
 
-a lightweight Go-based **F**ramework for **R**apid **A**nalytical **M**odeling in **E**lectrophysiology (**FRAME**). goFRAME is a simple directory that can simulate model dynamics in response to a stimulus (or multiple stimuli) in a concise, user-friendly manner.
+a Go-based **F**ramework for **R**apid **A**nalytical **M**odeling in **E**lectrophysiology (**FRAME**). goFRAME is a simple directory that can greatly improve the efficiency and organization of electrophysiological model simulations.
 
 
 ## Authors
