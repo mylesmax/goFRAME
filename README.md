@@ -154,10 +154,8 @@ WriteExcel(O Out, filePath string)
 
 ### Usable Numerical Methods
 
-"RK1" : Euler Method (Runge-Kutta 1)
+"RK1" : Euler Method (First Order Runge-Kutta)
 
-
-## License
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
+### Planned Features
+RK2 (Midpoint)
+Additional Examples
