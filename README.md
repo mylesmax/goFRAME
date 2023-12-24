@@ -4,7 +4,8 @@
 
 # goFRAME
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/mylesmax/goFRAME/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/mylesmax/goFRAME/blob/master/LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/mylesmax/goframes)](https://goreportcard.com/report/github.com/mylesmax/goframes)
+
 a lightweight Go-based **F**ramework for **R**apid **A**nalytical **M**odeling in **E**lectrophysiology (**FRAME**). goFRAME is a simple directory that can simulate model dynamics in response to a stimulus (or multiple stimuli) in a concise, user-friendly manner.
 
 
