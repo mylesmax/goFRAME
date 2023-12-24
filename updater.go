@@ -12,7 +12,7 @@ func GetStim(t float64, s Stims, tset TSet) (stimulus float64) {
 
 	for _, stim := range s {
 		if math.Abs(t-stim.Start) < tset.Dt/2 {
-			fmt.Println("Firing stimulus of", stim.Intensity, "mV at time", stim.Start, "ms with duration", strconv.FormatFloat(stim.End-stim.Start, 'f', 2, 64)+"ms.")
+			fmt.Println("Firing stimulus of", stim.Intensity, "at time", stim.Start, "ms with duration", strconv.FormatFloat(stim.End-stim.Start, 'f', 2, 64)+"ms.")
 		}
 
 		if t >= stim.Start && t <= stim.End || math.Abs(t-stim.Start) < tset.Dt/2 || math.Abs(t-stim.End) < tset.Dt/2 {

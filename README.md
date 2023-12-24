@@ -8,7 +8,6 @@
 
 a Go-based **F**ramework for **R**apid **A**nalytical **M**odeling in **E**lectrophysiology (**FRAME**). goFRAME is a simple directory that can greatly improve the efficiency and organization of electrophysiological model simulations.
 
-
 ## Authors
 
 - [@mylesmax](https://www.github.com/mylesmax)
@@ -17,52 +16,34 @@ a Go-based **F**ramework for **R**apid **A**nalytical **M**odeling in **E**lectr
 
 ##### 1952 Hodgkin-Huxley Model of a Neuronal Action Potential
 
-```txt
-examples/hodgkinhuxley
-```
+[/examples/hodgkinhuxley](https://github.com/mylesmax/goFRAME/tree/master/examples/hodgkinhuxley)
 
 original paper : [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1392413/
 ](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1392413/)
 
 ##### 1991 Luo-Rudy Model of a Ventricular Action Potential (LR1)
 
-```txt
-examples/luorudy1991
-```
+[/examples/luorudy1991](https://github.com/mylesmax/goFRAME/tree/master/examples/luorudy1991)
 
 original paper : [https://pubmed.ncbi.nlm.nih.gov/1709839/](https://pubmed.ncbi.nlm.nih.gov/1709839/)
 
 ## Usage
 
-##### Step 1: Go Get
+### Download
 
 Use the following command to download the repository:
 
 ```go get -t github.com/mylesmax/goFRAME```
 
-##### Step 2: Define Gates, Parameters, Currents
+### Model Generation
 
-Formulation is demonstrated in detail in the examples. However, here are some key notes:
+It is recommended to read the steps below for a general understanding of the framework, but for a more streamlined experience, follow the template tutorial in [/template](https://github.com/mylesmax/goFRAME/tree/master/template/).
 
-###### Gates
+##### Step 1: Define Parameters, Gates, and Currents
 
-If a gate is defined by alpha and beta values (``GateAB``), it should be defined as
+Parameter, gate, and current formulation is demonstrated in detail in the examples and template. However, here are some key notes:
 
-```
-goFRAME.GateAB{Alpha, Beta, ID}
-```
 
-where ``Alpha`` and ``Beta`` are ``func (V float64) float64`` and ``ID`` is of type ``string``.
-
-If a gate is defined by an analytical/direct solution (``GateDirect``), it should be defined as
-
-```
-goFRAME.GateDirect{Ss, ID}
-```
-
-where ``Ss`` is ``func(V float64) float64``.
-
-In both cases, the ``ID`` field should be matched to the gate name (e.g., ``ID`` is ``"m"`` for gate ``m``).
 
 ###### Parameters
 
@@ -95,15 +76,35 @@ type State struct {
 
 For the initial ``State``, set ``V=Vrest`` and ``Index=0``.
 
+###### Gates
+
+If a gate is defined by alpha and beta values (``GateAB``), it should be defined as
+
+```
+goFRAME.GateAB{Alpha, Beta, ID}
+```
+
+where ``Alpha`` and ``Beta`` are ``func (V float64) float64`` and ``ID`` is of type ``string``.
+
+If a gate is defined by an analytical/direct solution (``GateDirect``), it should be defined as
+
+```
+goFRAME.GateDirect{Ss, ID}
+```
+
+where ``Ss`` is ``func(V float64) float64``.
+
+In both cases, the ``ID`` field should be matched to the gate name (e.g., ``ID`` is ``"m"`` for gate ``m``).
+
 ###### Currents
 
 The ``params...interface{}`` is flexible to three parameters: ``params[0]`` is the current ``State``, ``params[1]`` is an ``Out`` (i.e., all saved States, which is ``[]State``), and ``params[2]`` is an ``int`` that represents the index.
 
-##### Step 3: Define Derivative Functions
+##### Step 2: Define Derivative Functions
 
 Most models have similar calculations of dvdt, the change in membrane voltage, which is given in examples. For further customization, the ``params...interface{}`` is flexible to three parameters: ``params[0]`` is the current ``Solver``, ``params[1]`` is an ``int`` that represents the index, and ``params[2]`` is a ``float64`` that represents the sum of all currents.
 
-##### Step 4: Simulate
+##### Step 3: Simulate
 
 Define a stimulus array ``Stims`` that contains as many ``Stim`` instances as needed:
 
@@ -154,8 +155,9 @@ WriteExcel(O Out, filePath string)
 
 ### Usable Numerical Methods
 
-"RK1" : Euler Method (First Order Runge-Kutta)
+"RK1" : Euler Method (Runge-Kutta 1)
 
-### Planned Features
-RK2 (Midpoint)
-Additional Examples
+## License
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
