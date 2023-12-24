@@ -1,12 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"goFRAME"
 )
 
 var (
 	initial goFRAME.State
-	out goFRAME.Out
+	out     goFRAME.Out
 
 	stims = goFRAME.Stims{
 		goFRAME.Stim{
@@ -41,5 +42,9 @@ func main() {
 
 	out = solver.Solve()
 
-	goFRAME.WriteExcel(out, "examples/hodgkinhuxley/out.xlsx")
+	err := goFRAME.WriteExcel(out, "examples/hodgkinhuxley/out.xlsx")
+	if err != nil {
+		fmt.Println("error exporting")
+		return
+	}
 }

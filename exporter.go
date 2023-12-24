@@ -19,13 +19,19 @@ func WriteExcel(O Out, filePath string) error {
 	}
 
 	f.SetActiveSheet(index)
-	f.DeleteSheet("Sheet1")
+	err = f.DeleteSheet("Sheet1")
+	if err != nil {
+		return err
+	}
 	currentColumnIndex := 1
 	headerIndexMap := make(map[string]int)
 
 	writeHeader := func(header string) {
 		cell, _ := excelize.CoordinatesToCellName(currentColumnIndex, 1)
-		f.SetCellValue(sheetName, cell, header)
+		err := f.SetCellValue(sheetName, cell, header)
+		if err != nil {
+			return
+		}
 		headerIndexMap[header] = currentColumnIndex
 		currentColumnIndex++
 	}
@@ -63,18 +69,39 @@ func WriteExcel(O Out, filePath string) error {
 
 	for rowIndex, state := range O {
 		rowNumber := rowIndex + 2
-		f.SetCellValue(sheetName, "A"+strconv.Itoa(rowNumber), state.Index)
-		f.SetCellValue(sheetName, "B"+strconv.Itoa(rowNumber), state.T)
-		f.SetCellValue(sheetName, "C"+strconv.Itoa(rowNumber), state.V)
-		f.SetCellValue(sheetName, "D"+strconv.Itoa(rowNumber), state.Stim)
-		f.SetCellValue(sheetName, "E"+strconv.Itoa(rowNumber), state.Cm)
-		f.SetCellValue(sheetName, "F"+strconv.Itoa(rowNumber), state.RTF)
+		err := f.SetCellValue(sheetName, "A"+strconv.Itoa(rowNumber), state.Index)
+		if err != nil {
+			return err
+		}
+		err = f.SetCellValue(sheetName, "B"+strconv.Itoa(rowNumber), state.T)
+		if err != nil {
+			return err
+		}
+		err = f.SetCellValue(sheetName, "C"+strconv.Itoa(rowNumber), state.V)
+		if err != nil {
+			return err
+		}
+		err = f.SetCellValue(sheetName, "D"+strconv.Itoa(rowNumber), state.Stim)
+		if err != nil {
+			return err
+		}
+		err = f.SetCellValue(sheetName, "E"+strconv.Itoa(rowNumber), state.Cm)
+		if err != nil {
+			return err
+		}
+		err = f.SetCellValue(sheetName, "F"+strconv.Itoa(rowNumber), state.RTF)
+		if err != nil {
+			return err
+		}
 
 		writeMapData := func(m map[string]float64, prefix string) {
 			for key, value := range m {
 				colIndex := headerIndexMap[prefix+key]
 				cell, _ := excelize.CoordinatesToCellName(colIndex, rowNumber)
-				f.SetCellValue(sheetName, cell, value)
+				err := f.SetCellValue(sheetName, cell, value)
+				if err != nil {
+					return
+				}
 			}
 		}
 

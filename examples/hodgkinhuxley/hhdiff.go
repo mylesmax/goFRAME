@@ -5,7 +5,7 @@ import (
 	"goFRAME"
 )
 
-func dvdt(params...interface{}) float64 {
+func dvdt(params ...interface{}) float64 {
 	solver, ok := params[0].(goFRAME.Solver)
 	if !ok {
 		fmt.Println("error in dvdt solver")

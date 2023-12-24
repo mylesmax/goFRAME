@@ -4,7 +4,7 @@ package goFRAME
 type GateAB struct {
 	Alpha func(State) float64
 	Beta  func(State) float64
-	ID string
+	ID    string
 }
 
 func (g GateAB) Ss(s State) float64 {

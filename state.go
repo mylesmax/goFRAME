@@ -6,7 +6,7 @@ type TSet struct {
 
 type State struct {
 	V, Cm, RTF, Stim, T float64
-	Index                int
+	Index               int
 	//Nernst Potentials
 	E map[string]float64
 
@@ -21,7 +21,7 @@ type State struct {
 
 	//ion concentrations
 	ConcOut map[string]float64
-	ConcIn map[string]float64
+	ConcIn  map[string]float64
 
 	//misc
 	Misc map[string]float64
@@ -29,7 +29,7 @@ type State struct {
 
 type Out []State
 
-type Stim struct{
+type Stim struct {
 	Start, End, Intensity float64
 }
 

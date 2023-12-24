@@ -21,7 +21,7 @@ var (
 		Beta:  bK1,
 		ID:    "K1",
 	}
-	
+
 	Kp = goFRAME.GateDirect{
 		Ss: KpFunc,
 		ID: "Kp",
@@ -56,10 +56,9 @@ var (
 		Beta:  bf,
 		ID:    "f",
 	}
-	
 )
 
-func XiFunc(s goFRAME.State)  float64 {
+func XiFunc(s goFRAME.State) float64 {
 	Vm := s.V
 	if Vm > -100 {
 		return 2.837 * (math.Exp(0.04*(Vm+77)) - 1) / ((Vm + 77) * (math.Exp(0.04 * (Vm + 35))))
